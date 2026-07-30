@@ -1,12 +1,9 @@
-import { Link } from "expo-router";
-import { Text, View, StyleSheet, Image } from "react-native";
+import { Text, View, StyleSheet } from "react-native";
 
 export default function Index() {
   return (
     <View style={styles.background}>
-      <Text>Edit src/app/index.tsx to edit this screen.</Text>
-      <Image
-        source={require("../../assets/images/tabIcons/home.png")} style={{width: 200, height: 200}}/>
+      <Text className="text-red-500 text-4xl bg-purple-500">Edit src/app/index.tsx to edit this screen.123123</Text>
     </View>
   );
 }
