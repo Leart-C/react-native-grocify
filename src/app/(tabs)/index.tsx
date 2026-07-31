@@ -3,8 +3,8 @@ import { useClerk } from '@clerk/expo'
 import { Text, View, Pressable, StyleSheet } from 'react-native'
 
 export default function Page() {
-  const { user } = useUser()
-  const { signOut } = useClerk()
+  const { user } = useUser();
+  const { signOut } = useClerk();
 
   return (
     <View style={styles.container}>

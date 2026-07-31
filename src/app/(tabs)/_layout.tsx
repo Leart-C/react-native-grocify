@@ -8,13 +8,23 @@ import {
 } from 'expo-router/unstable-native-tabs';
 import { ActivityIndicator, View } from 'react-native';
 import {useColorScheme} from "nativewind";
+import { useGroceryStore } from '@/store/grocery-store';
+import { useEffect } from 'react';
 
 export default function TabsLayout() {
   const { isSignedIn, isLoaded } = useAuth();
 
+  const {loadItems,items} = useGroceryStore();
+
   const {colorScheme} = useColorScheme();
   const isDark = colorScheme === "dark";
   const tabTintColor = isDark ? "hsl(142 79% 54%)" : "hsl(147 75% 33%)";
+
+  useEffect(() => {
+    loadItems();
+  },[]);
+
+  
 
   if (!isLoaded) {
     return (
