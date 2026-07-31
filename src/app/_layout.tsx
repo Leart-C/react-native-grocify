@@ -1,21 +1,34 @@
-import { ClerkProvider } from '@clerk/expo'
-import { Stack } from "expo-router";
-import "../../global.css";
-import { DefaultTheme,DarkTheme, ThemeProvider } from '@react-navigation/native';
+import { ClerkProvider } from '@clerk/expo';
+import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import { Stack } from 'expo-router';
 import { useColorScheme } from 'react-native';
+import '../../global.css';
 
-const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY!
+const publishableKey =
+  process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
 
 if (!publishableKey) {
-  throw new Error('Add your Clerk Publishable Key to the .env file')
+  throw new Error('Add your Clerk Publishable Key to the .env file');
 }
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
-  // it will remove the header from all screens in the stack navigator
+
+  const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
+
+  if (!publishableKey) {
+    throw new Error(
+      'EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY is missing from the .env file'
+    );
+  }
+
   return (
-    <ClerkProvider publishableKey={publishableKey}>
-      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+    <ClerkProvider
+      publishableKey={publishableKey}
+    >
+      <ThemeProvider
+        value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
+      >
         <Stack screenOptions={{ headerShown: false }} />
       </ThemeProvider>
     </ClerkProvider>
