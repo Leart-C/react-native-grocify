@@ -50,7 +50,7 @@ export const updateGroceryItemQuantity = async (id:string, quantity:number) => {
     return rows[0];
 }
 
-export const clearPurchasedItems = async(id:string) => {
+export const clearPurchasedItems = async() => {
     await db.delete(groceryItems).where(eq(groceryItems.purchased,true));
 }
 
